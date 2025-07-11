@@ -8,7 +8,9 @@ const io = new Server(server);
 
 app.use(express.static('public'));
 
-// Store usernames and their colors
+
+
+
 const users = {};
 
 function getRandomColor() {
@@ -17,30 +19,32 @@ function getRandomColor() {
 }
 
 io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
-
   socket.on('set username', (username) => {
     users[socket.id] = {
       name: username,
-      color: getRandomColor()
+      color: getRandomColor(),
     };
-    console.log(`${username} has joined with color ${users[socket.id].color}`);
+    io.emit('info', `${username} has joined the chat.`);
   });
 
   socket.on('chat message', (msg) => {
     const user = users[socket.id];
     io.emit('chat message', {
-      user: user?.name || 'Anonymous',
+      user: user?.name || 'Guest',
       color: user?.color || '#000',
-      message: msg
+      message: msg,
     });
   });
 
   socket.on('disconnect', () => {
-    delete users[socket.id];
+    const user = users[socket.id];
+    if (user) {
+      io.emit('info', `${user.name} has left the chat.`);
+      delete users[socket.id];
+    }
   });
 });
 
 server.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+  console.log('Server running at http://localhost:3000');
 });
