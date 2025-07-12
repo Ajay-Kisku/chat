@@ -8,10 +8,8 @@ const io = new Server(server);
 
 app.use(express.static('public'));
 
-
-
-
 const users = {};
+const chatHistory = []; // 🕘 Step 1: Chat history array
 
 function getRandomColor() {
   const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6'];
@@ -19,6 +17,26 @@ function getRandomColor() {
 }
 
 io.on('connection', (socket) => {
+
+  
+
+  // // Client IP address (if not behind proxy)
+  // const ip = socket.handshake.address;
+  // console.log('Client IP:', ip);
+
+  // // Optional: Any query data (if sent by client)
+  // console.log('Query:', socket.handshake.query);
+
+  // // Optional: Custom headers (e.g., user-agent)
+  // console.log('Headers:', socket.handshake.headers);
+
+  // // Optional: If you're passing user info via `auth`
+  // console.log('Auth data:', socket.handshake.auth);
+
+
+  // 🕘 Step 2: Send chat history to new user
+  socket.emit('chat history', chatHistory);
+
   socket.on('set username', (username) => {
     users[socket.id] = {
       name: username,
@@ -27,13 +45,25 @@ io.on('connection', (socket) => {
     io.emit('info', `${username} has joined the chat.`);
   });
 
+  socket.on('typing', (isTyping) => {
+    const user = users[socket.id]?.name || "GuestZ";
+    socket.broadcast.emit('typing', { user, isTyping });
+  });
+
   socket.on('chat message', (msg) => {
     const user = users[socket.id];
-    io.emit('chat message', {
+    const messageData = {
       user: user?.name || 'Guest',
       color: user?.color || '#000',
       message: msg,
-    });
+      timestamp: new Date().toISOString(),
+    };
+
+    // 🕘 Step 3: Save message in history
+    chatHistory.push(messageData);
+    if (chatHistory.length > 100) chatHistory.shift(); // Keep last 100 messages
+
+    io.emit('chat message', messageData);
   });
 
   socket.on('disconnect', () => {
