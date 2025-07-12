@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sandesh</title>
 
-    <!-- <meta name="color-scheme" content="light dark"> -->
-      <!-- Add this before closing </body> -->
-
-
+    <meta name="color-scheme" content="light dark">
 
 
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -47,12 +44,10 @@
         main{
             height: auto;
             overflow: scroll;
-            overflow-x: hidden;
 
             padding: 10px;
 
             padding-block: 50px;
-            margin-bottom: 45px;
         }
 
 
@@ -75,13 +70,6 @@
                 font-size: 15px;
                 border: 1px solid;
                 border-radius: 0px;
-            }
-
-            #msg[contenteditable]:empty::before {
-                content: attr(data-placeholder);
-                color: #999;
-                position: absolute;
-                pointer-events: none;
             }
 
             button{
@@ -113,23 +101,10 @@
         padding: 10px;
         margin-block: 10px;
 
-        .pic{
-
-            height: 40px;
-            min-width: 40px;
-            overflow: hidden;
-            /* border: 1px solid grey; */
-            border-radius: 50%;
-            
-        }
-
         img{
             height: 40px;
             width: 40px;
-            
-            scale: 1.16;
-
-            
+            border-radius: 50%;
         }
 
         .name{
@@ -163,44 +138,21 @@
 
 <body>
 
-    <header style="display: flex; padding: 6px; gap: 10px;     align-items: center;
-    justify-content: space-between;">
-        <!-- <nav style="border-bottom: 1px solid;padding: 10px; width: 100% fit-content;  margin-bottom: 4px;">
+    <header>
+        <nav style="border-bottom: 1px solid;padding: 10px; width: 100% fit-content;  margin-bottom: 4px;">
             <a href="http://">Home</a>
             <a href="http://">Group</a>
             <a href="http://">New-Chat</a>
-        </nav> -->
+        </nav>
 
-        <div class="left" style="display: flex; gap: 10px; align-items: center">
-            <div class="back" style="font-size: 22px; padding-inline: 8px;">&#10094;</div>
+        <div class="group-name" 
+            style="
+            width: fit-content;
+           
 
-            <div class="group-details">
-            <div class="group-name" 
-                        style="
-                        width: fit-content;
-                    font-size: 20px;
-                    font-weight: bold;
-                        ">
-                        Escape Room
-                    </div>
-
-                <div style="font-size: 10px; color: grey;">
-                    Ram, shayam , sohan... 
-                    
-                </div>
+            padding: 6px;">
+            Room : 5345
         </div>
-
-        </div>
-
-        
-
-        
-
-         <div class="invite" 
-            style="border: 1px solid; font-size: 13px; padding: 5px; margin-inline: 4px;">
-         Invite
-        </div>
-
 
         <!-- <nav style=" width: fit-content; padding: 4px;">
             
@@ -245,7 +197,7 @@
 
         </div>
 
-        <div class="info" style=" align-items:center;  text-align: center; font-size: 12px; text-decoration: underline; ">Sam has joined the chat.</div>
+        <div class="info" style=" align-items:center;  text-align: center; font-size: 12px; text-decoration: underline; " contenteditable>Sam has joined the chat.</div>
 
 
         <div class="card" style="flex-direction: row-reverse; text-align: right;">
@@ -379,22 +331,11 @@
     </main>
 
     <footer >
-        <form action="" style="display: flex; gap: 0px; align-items: flex-end ">
-            <!-- <input type="text" name="msg" id="msg" placeholder="Enter your message..." style="width: 70%;"> -->
-            
-            <div style="display: flex; flex-direction: column-reverse; width: 80%; background-color: unset; backdrop-filter: blur(10px);">
-
-                <div  name="msg" id="msg" placeholder="Enter your message..."   data-placeholder="Type your message..."
-                    style=" resize: none; height: auto; min-height: 20px; 
-                            padding: 10px; max-height: 200px;
-                            overflow-y: scroll;" contenteditable ></Div>
-                </div>
-            <button type="submit" style="width: 20%;">Send</button>
+        <form action="" style="display: flex; gap: 0px; width: 100%;">
+            <input type="text" name="msg" id="msg" placeholder="Enter your message..." style="width: 70%;">
+            <button type="submit" style="width: 30%;">Send</button>
         </form>
     </footer>
-
-      <script src="/socket.io/socket.io.js"></script>
-  <script src="main.js"></script>
     
 </body>
 </html>
