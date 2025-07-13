@@ -12,7 +12,7 @@ const users = {};
 const chatHistory = []; // 🕘 Step 1: Chat history array
 
 function getRandomColor() {
-  const colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6'];
+  const colors = ['#e6194b', '#3cb44b', '#ff4f19ff', '#4363d8', '#f58231', '#911eb4', '#f032e6'];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
