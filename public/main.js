@@ -105,9 +105,10 @@ socket.on('chat message', (msg) => {
 socket.on('info', (info) => {
   const infoTag = document.createElement('div');
   infoTag.className = 'info';
-  infoTag.style.cssText = "align-items:center; text-align:center; font-size:12px; text-decoration:underline;";
+  infoTag.style.cssText = "align-items:center; text-align:center; font-size:12px; text-decoration:underline; padding-block:4px";
   infoTag.textContent = info;
   main.appendChild(infoTag);
+  main.scrollTop = main.scrollHeight;
 });
 
 
