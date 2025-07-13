@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sandesh</title>
 
-    <!-- <meta name="color-scheme" content="light dark"> -->
+    <meta name="color-scheme" content="light dark">
       <!-- Add this before closing </body> -->
 
 
@@ -32,10 +32,44 @@
             flex-direction: column;
 
             height: 100vh;
+            justify-content: space-between;
+            align-items: center;
             /* background-color: pink; */
         }
 
+        .container{
+            /* background-color: pink; */
+            border: 1px solid;
+
+            width: 390px;
+            /* min-height: 100vh;
+            max-height: 95vh; */
+            overflow: hidden;
+
+             display: flex;
+            flex-direction: column;
+
+            height: 100vh;
+            justify-content: space-between;
+        }
+
+        @media only screen and (max-width: 400px) {
+            .container{
+                width: 100%;
+                /* height: auto; */
+
+            }
+            footer{
+                width: 100%;
+            }
+        }
+
         header{
+
+            /* position: sticky;
+            top:0px;
+            z-index: 9999;
+            backdrop-filter: blur(10px); */
             border-bottom: 1px solid rgb(160, 160, 160);
 
             a{
@@ -45,23 +79,29 @@
         }
 
         main{
-            height: auto;
+            /* height: auto; */
+            max-height: auto;
             overflow: scroll;
+            /* overflow-y: hidden; */
             overflow-x: hidden;
 
             padding: 10px;
 
-            padding-block: 50px;
-            margin-bottom: 45px;
+            padding-block: 20px;
+            margin-bottom: 35px;
         }
 
 
         footer{
             /* margin: 10px; */
+            width: 390px;
+
 
             position: fixed;
+            /* position: sticky; */
             bottom: 0px;
-            width: 100%;
+            /* width: 100%; */
+            /* height: 100vh; */
             /* background-color: red; */
 
             #msg{
@@ -164,6 +204,11 @@
 
 <body>
 
+
+    <div class="container">
+
+   
+
     <header style="display: flex; padding: 6px; gap: 10px;     align-items: center;
     justify-content: space-between;">
         <!-- <nav style="border-bottom: 1px solid;padding: 10px; width: 100% fit-content;  margin-bottom: 4px;">
@@ -179,11 +224,10 @@
             <div class="group-name" 
                         style="
                         width: fit-content;
-                    font-size: 20px;
-                    font-weight: bold;
-                        ">
-                        Escape Room
-                    </div>
+                        font-size: 20px;font-weight: bold;"
+            >
+            Chat Room
+            </div>
 
                 <div style="font-size: 10px; color: grey;">
                     Welcome to the chat
@@ -217,23 +261,23 @@
         <p>this is Dog </p> -->
 
 
-        <div class="hidden-div"></div>
+<div class="hidden-div" hidden>
         <div class="card">
-        <div class="pic">
-            <img src="https://static.vecteezy.com/system/resources/previews/042/332/098/non_2x/default-avatar-profile-icon-grey-photo-placeholder-female-no-photo-images-for-unfilled-user-profile-greyscale-illustration-for-socail-media-web-vector.jpg" alt="" height="50px" width="50px">
+            <div class="pic">
+                <img src="https://static.vecteezy.com/system/resources/previews/042/332/098/non_2x/default-avatar-profile-icon-grey-photo-placeholder-female-no-photo-images-for-unfilled-user-profile-greyscale-illustration-for-socail-media-web-vector.jpg" alt="" height="50px" width="50px">
+            </div>
+            
+            <div class="post">
+                <div class="name">Aditi Kumari</div>
+                <!-- <div class="branch">CSE</div> -->
+
+                <div class="expecting">For the very first time I will sing a song on the day, guys please be supportive.</div>
+            </div>
+            <div class="extra"></div>
+
         </div>
-        
-        <div class="post">
-            <div class="name">Aditi Kumari</div>
-            <!-- <div class="branch">CSE</div> -->
 
-            <div class="expecting">For the very first time I will sing a song on the day, guys please be supportive.</div>
-        </div>
-        <div class="extra"></div>
-
-    </div>
-
-    <div class="card">
+        <div class="card">
             <div class="pic">
                 <img src="https://static.vecteezy.com/system/resources/previews/045/944/199/non_2x/male-default-placeholder-avatar-profile-gray-picture-isolated-on-background-man-silhouette-picture-for-user-profile-in-social-media-forum-chat-greyscale-illustration-vector.jpg" alt="" height="50px" width="50px">
             </div>
@@ -375,7 +419,7 @@
             </div>
             <div class="extra"></div>
         </div>
-
+</div>
 
 
 
@@ -402,6 +446,8 @@
             <button type="submit" style="width: 20%;">Send</button>
         </form>
     </footer>
+
+     </div>
 
       <script src="/socket.io/socket.io.js"></script>
   <script src="main.js"></script>
